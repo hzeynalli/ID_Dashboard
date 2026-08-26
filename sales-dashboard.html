@@ -474,9 +474,21 @@ footer b{color:var(--dv-text);font-weight:600}
 @media (min-width:1024px){
   .wrap{padding:0 var(--dv-s10)}
   .grid{grid-template-columns:minmax(320px,4fr) 7fr;gap:var(--dv-s4)}
-  /* wide enough that a five-column statement fits without horizontal scroll */
-  .detail{left:auto;width:min(960px,94vw);border-left:1px solid var(--dv-glass-dense-border);
-    box-shadow:var(--dv-shadow-over)}
+  /* on desktop the drill-down is a centred modal, wide enough that the
+     five-column statement fits with no horizontal scrolling */
+  .detail{
+    inset:auto; left:50%; top:50%;
+    width:min(1240px,94vw); max-height:92vh;
+    transform:translate(-50%,-47%); opacity:0;
+    border:1px solid var(--dv-glass-dense-border);
+    border-radius:var(--dv-radius-shell);
+    box-shadow:var(--dv-shadow-over);
+    transition:transform var(--dv-standard) var(--dv-ease),
+               opacity var(--dv-standard) var(--dv-ease),
+               visibility 0s linear var(--dv-standard);
+  }
+  .detail.open{transform:translate(-50%,-50%);opacity:1}
+  .dhead{border-radius:var(--dv-radius-shell) var(--dv-radius-shell) 0 0}
   .lrow{padding-left:var(--dv-s8)}
 }
 </style>
